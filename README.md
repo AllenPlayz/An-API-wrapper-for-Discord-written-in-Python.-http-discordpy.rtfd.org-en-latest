@@ -1,0 +1,1 @@
+# An-API-wrapper-for-Discord-written-in-Python.-http-discordpy.rtfd.org-en-latest
