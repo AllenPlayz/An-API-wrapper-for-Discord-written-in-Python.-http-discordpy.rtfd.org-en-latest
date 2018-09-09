@@ -1,71 +1,21 @@
-# README.md
-discord.py
-PyPI PyPI
+The MIT License (MIT)
 
-discord.py is an API wrapper for Discord written in Python.
+Copyright (c) 2015-2016 Rapptz
 
-This was written to allow easier writing of bots or chat logs. Make sure to familiarise yourself with the API using the documentation.
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
 
-Breaking Changes
-The discord API is constantly changing and the wrapper API is as well. There will be no effort to keep backwards compatibility in versions before v1.0.0.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-I recommend joining either the official discord.py server or the Discord API server for help and discussion about the library.
-
-Installing
-To install the library without full voice support, you can just run the following command:
-
-python3 -m pip install -U discord.py
-Otherwise to get voice support you should run the following command:
-
-python3 -m pip install -U discord.py[voice]
-To install the development version, do the following:
-
-python3 -m pip install -U https://github.com/Rapptz/discord.py/archive/master.zip#egg=discord.py[voice]
-or the more long winded from cloned source:
-
-$ git clone https://github.com/Rapptz/discord.py
-$ cd discord.py
-$ python3 -m pip install -U .[voice]
-Please note that on Linux installing voice you must install the following packages via your favourite package manager (e.g. apt, yum, etc) before running the above command:
-
-libffi-dev (or libffi-devel on some systems)
-python-dev (e.g. python3.5-dev for Python 3.5)
-Quick Example
-import discord
-import asyncio
-
-client = discord.Client()
-
-@client.event
-async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('!test'):
-        counter = 0
-        tmp = await client.send_message(message.channel, 'Calculating messages...')
-        async for log in client.logs_from(message.channel, limit=100):
-            if log.author == message.author:
-                counter += 1
-
-        await client.edit_message(tmp, 'You have {} messages.'.format(counter))
-    elif message.content.startswith('!sleep'):
-        await asyncio.sleep(5)
-        await client.send_message(message.channel, 'Done sleeping')
-
-client.run('token')
-Note that in Python 3.4 you use @asyncio.coroutine instead of async def and yield from instead of await.
-
-You can find examples in the examples directory.
-
-Requirements
-Python 3.4.2+
-aiohttp library
-websockets library
-PyNaCl library (optional, for voice only)
-On Linux systems this requires the libffi library. You can install in debian based systems by doing sudo apt-get install libffi-dev.
-Usually pip will handle these for you.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
